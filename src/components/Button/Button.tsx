@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
+import style from './Button.style'
 
 interface IButtonProps {
     children: any;
@@ -15,13 +16,4 @@ const Button:React.FC<IButtonProps> = ({children}) => {
     );
 }
 
-const style = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-    },
-
-    text: {
-        color: 'darkgreen'
-    }
-})
 export default Button;
