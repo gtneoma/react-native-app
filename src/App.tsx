@@ -22,8 +22,8 @@ function App() {
         Hello World !
     </Text>
       <Button children="Valeur du bouton" obligatoire={undefined}/>
-      <Button />
-      <Button />
+      <Button children="Valeur du bouton" obligatoire={undefined}/>
+      <Button children="Valeur du bouton" obligatoire={undefined}/>
       </View>
     </SafeAreaProvider>
   );
