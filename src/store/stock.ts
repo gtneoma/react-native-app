@@ -1,5 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { IProductListItem } from '../interfaces/IProducts'
+import { REST_ADR } from '../config/constantes';
+import { RESSOURCES_NAMES } from '../config/constantes';
 
 interface IStockState {
     products: Array<IProductListItem>;
@@ -25,9 +27,23 @@ const stock = createSlice({
         state.loaded= false;
     },
   },
+
+  extraReducers: builder => {
+    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+        state.products = action.payload;
+        state.loaded = true
+    })
+  }
 });
 
 export const { resetStock, addProductToStock} = stock.actions
 
 const stockReducer = stock.reducer;
 export default stockReducer;
+
+export const fetchProducts = createAsyncThunk('stock/fetchProducts', async () => {
+    const promise = await fetch(`${REST_ADR}${RESSOURCES_NAMES.PRODUCTS}`);
+    const data = await promise.json();
+    return data;
+    
+})
