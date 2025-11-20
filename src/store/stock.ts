@@ -45,5 +45,4 @@ export const fetchProducts = createAsyncThunk('stock/fetchProducts', async () =>
     const promise = await fetch(`${REST_ADR}${RESSOURCES_NAMES.PRODUCTS}`);
     const data = await promise.json();
     return data;
-    
 })

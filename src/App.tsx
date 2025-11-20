@@ -12,6 +12,8 @@ import ProductListItem from './components/ProductListItem/ProductListItem';
 import { useEffect, useState } from 'react';
 import { IProductListItem } from './interfaces/IProducts';
 import { RESSOURCES_NAMES, REST_ADR } from './config/constantes';
+import './store/store'
+import ProductList from './components/ProductList/ProductList';
 
 function App() {
   const [products, setproducts] = useState<Array<IProductListItem>>([]);
@@ -35,11 +37,7 @@ function App() {
         <Text style={{ textAlign: 'center', fontSize: 18 }}>
           Liste des produits
         </Text>
-        <ScrollView style={{ height: 350 }}>
-          {products.map(item => (
-            <ProductListItem produit={item} key={item.id} />
-          ))}
-        </ScrollView>
+        <ProductList products={products}/>
        
       </View>
     </SafeAreaProvider>
