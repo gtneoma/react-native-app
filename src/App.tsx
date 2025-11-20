@@ -5,7 +5,7 @@
  * @format
  */
 
-import { StatusBar, useColorScheme, View, Text} from 'react-native';
+import { StatusBar, useColorScheme, View, Text, Alert} from 'react-native';
 import {
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
@@ -21,9 +21,9 @@ function App() {
     <Text>
         Hello World !
     </Text>
-      <Button children="Valeur du bouton" obligatoire={undefined}/>
-      <Button children="Valeur du bouton" obligatoire={undefined}/>
-      <Button children="Valeur du bouton" obligatoire={undefined}/>
+      <Button bgcolor='skyblue' children="test 1" obligatoire={undefined} onButtonClick={() => {
+        Alert.alert('cliqué')
+      }}/>
       </View>
     </SafeAreaProvider>
   );
