@@ -1,0 +1,46 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Breizh cola 150cl",
+      "img": "https://shoppicture.ww-api.com/pretty_pict/v1/800x1200/50x50/v1/commerce_pict/3269347/1698245999343_30/allo-apero-breizh-cola.png",
+      "prix": 1.99,
+      "stock": 6
+    },
+    {
+      "id": 2,
+      "name": "Kouign aman",
+      "img": "https://biscuiterie-lafabrique.fr/wp-content/uploads/2024/09/Kouign-amann-praline-rose-La-Fabrique-Chavagne-e1747217497199.png",
+      "prix": 3.85,
+      "stock": 0
+    },
+    {
+      "id": 3,
+      "name": "beurre salé",
+      "img": "https://dojwn62xby8qn.cloudfront.net/public/offer_presentations/slideshows/original/16389-1640171519.png?1640171519",
+      "prix": 4.85,
+      "stock": 2
+    },
+    {
+      "id": 4,
+      "name": "far breton",
+      "img": "https://www.coursesu.com/dw/image/v2/BBQX_PRD/on/demandware.static/-/Sites-digitalu-master-catalog/default/dw0d172898/3413900000242_A1R1_2639227_S18.png?sw=388&sh=388&sm=fit",
+      "prix": 4.85,
+      "stock": 2
+    },
+    {
+      "id": 5,
+      "name": "Cidre bolée d'armorique 75cl",
+      "img": "https://www.charlemagne-boissons.com/7752-large_default/cidre-bolee-d-armorique-brut.jpg",
+      "prix": 2.65,
+      "stock": 8
+    },
+    {
+      "id": 6,
+      "name": "Carabreizh 400Grms",
+      "img": "https://boutique.carabreizh.bzh/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/7/0/704_2.png",
+      "prix": 5.85,
+      "stock": 6
+    }
+  ]
+}

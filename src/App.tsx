@@ -5,35 +5,44 @@
  * @format
  */
 
-import { StatusBar, useColorScheme, View, Text, Alert} from 'react-native';
-import {
-  SafeAreaProvider,
-} from 'react-native-safe-area-context';
-import Button from './components/Button/Button';
+import { Text, View, ScrollView, Button } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import ProductListItem from './components/ProductListItem/ProductListItem';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+import { useEffect, useState } from 'react';
+import { IProductListItem } from './interfaces/IProducts';
+import { RESSOURCES_NAMES, REST_ADR } from './config/constantes';
 
+function App() {
+  const [products, setproducts] = useState<Array<IProductListItem>>([]);
+  useEffect(() => {
+    fetch(`${REST_ADR}${RESSOURCES_NAMES.PRODUCTS}`)
+      .then(r => r.json())
+      .then(data => {
+        setproducts(data);
+      })
+      .catch(e => console.log(e));
+    return () => {};
+  }, []);
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <View>
-    <Text>
-        Hello World !
-    </Text>
-      <Button bgcolor='skyblue' children="test 1" obligatoire={undefined} onButtonClick={() => {
-        Alert.alert('cliqué')
-      }}/>
-      <ProductListItem
-          produit={{ id: 1, name: 'Produit 1', img: 'https://reactnative.dev/img/tiny_logo.png', prix: 3.99, stock: 6 }}
-        ></ProductListItem>
-        <ProductListItem
-          produit={{ id: 2, name: 'Produit 2', img: 'https://reactnative.dev/img/tiny_logo.png', prix: 1.99, stock: 0 }}
-        ></ProductListItem>
+      {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
+      <View style={{ paddingTop: 25 }}>
+      <Button title="add empty product"  onPress={() => {
+          setproducts([...products, { name: 'Produit vide', prix: 0, stock: 0, img: '', id:Math.random()*100000 }]);
+        }} />
+        <Button title="Coucou" onPress={() => alert('Coucou')} />
+        <Text style={{ textAlign: 'center', fontSize: 18 }}>
+          Liste des produits
+        </Text>
+        <ScrollView style={{ height: 350 }}>
+          {products.map(item => (
+            <ProductListItem produit={item} key={item.id} />
+          ))}
+        </ScrollView>
+       
       </View>
     </SafeAreaProvider>
   );
 }
-
 export default App;
