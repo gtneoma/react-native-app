@@ -1,4 +1,4 @@
-export interface IProductListItem {
+export interface IProductItem {
   idcategory?: number;
   id?: number;
   name: string;
@@ -6,4 +6,4 @@ export interface IProductListItem {
   stock: number;
   img: string;
 }
-export type TProductCartList = IProductListItem & { quantity: number };
+export type TProductCart = IProductItem & { quantity: number };

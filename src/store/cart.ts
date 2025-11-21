@@ -1,18 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IProductListItem, TProductCartList } from '../interfaces/IProducts';
+import { IProductItem, TProductCart } from '../interfaces/IProducts';
+import { fetchProducts } from './stock';
 
 const initialState = {
-  products: [] as Array<TProductCartList>,
+  products: [] as Array<TProductCart>,
 };
 
 const cart = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addProductToCart(
-      state,
-      action: { type: string; payload: IProductListItem },
-    ) {
+    addProductToCart(state, action: { type: string; payload: IProductItem }) {
       const position = state.products.findIndex(
         p => p.id === action.payload.id,
       );
@@ -42,10 +40,18 @@ const cart = createSlice({
       }
     },
   },
+  extraReducers(builder) {
+    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+      state.products.push(
+        { ...action.payload.products[0], quantity: 2 },
+        { ...action.payload.products[1], quantity: 2 },
+      );
+    });
+  },
 });
 
 export const { addProductToCart, removeQuantityProductInCartById } =
   cart.actions;
 
-const cartReducer= cart.reducer;
+const cartReducer = cart.reducer;
 export default cartReducer;

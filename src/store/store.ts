@@ -33,3 +33,4 @@ store.dispatch(fetchProducts());
 // store.dispatch(addProductToCart(products[2]));
 
 // store.dispatch(removeQuantityProductInCartById(products[2].id));
+

@@ -1,7 +1,7 @@
 import { Button } from 'react-native';
 import React from 'react';
-import store from '../../store/store';
-import { addProductToStock } from '../../store/stock';
+import store from '../../../store/store';
+import { addProductToStock } from '../../../store/stock';
 interface IAddProductButtonProps {
   onClick: () => void;
 }

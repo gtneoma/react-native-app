@@ -8,14 +8,21 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "restapi": "json-server -p 5679 -H 0.0.0.0 db.json"
+    "json": "json-server -p 5679 -H 0.0.0.0 db.json",
+    "adb:reverse": "adb reverse tcp:5679 tcp:5679",
+    "restapi": "npm run adb:reverse && npm run json"
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.82.1",
+    "@react-navigation/native": "^7.1.21",
+    "@react-navigation/native-stack": "^7.6.4",
     "@reduxjs/toolkit": "^2.10.1",
     "react": "19.1.1",
     "react-native": "0.82.1",
-    "react-native-safe-area-context": "^5.5.2"
+    "react-native-safe-area-context": "^5.6.2",
+    "react-native-screens": "^4.18.0",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.9.6"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { IProductListItem } from '../interfaces/IProducts';
+import { IProductItem } from '../interfaces/IProducts';
 import { RESSOURCES_NAMES, REST_ADR } from '../config/constantes';
 interface IStockState {
-  products: Array<IProductListItem>;
+  products: Array<IProductItem>;
   categories?: Array<{id:number}>;
   loaded: boolean;
 }
@@ -18,7 +18,7 @@ const stock = createSlice({
   reducers: {
     addProductToStock(
       state,
-      action: { type: string; payload: IProductListItem },
+      action: { type: string; payload: IProductItem },
     ) {
       console.log(action);
       state.products.push(action.payload);

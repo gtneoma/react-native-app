@@ -5,24 +5,30 @@
  * @format
  */
 
-import { Text, View, Button, Alert } from 'react-native';
+import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
-import ProductList from './components/ProductList/ProductList.connected';
-import { AddProductButtonConnected } from './components/AddProductButton/AddProductButton';
+import Banner from './components/ui/Banner/Banner';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import CartList from './components/ui/lists/CartList/CartList.connected';
+import ProductList from './components/ui/lists/ProductList/ProductList.connected';
+import NavigationStack from './navigation/NavigationStack';
+// import CartListUC from './components/ui/lists/CartList/CartList';
 function App() {
+
   return (
+    <Provider store={store}>
       <SafeAreaProvider>
         {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
         <View style={{ paddingTop: 25 }}>
-          <AddProductButtonConnected />
-          <Button title="Coucou" onPress={() => Alert.alert('Coucou')} />
-          <Text style={{ textAlign: 'center', fontSize: 18 }}>
-            Liste des produits
-          </Text>
-          <ProductList />
+          <Banner text="Ma boutique" />
         </View>
+        <NavigationStack/>
+        <ProductList/>
+        <CartList />
+        {/* {state.length>0&&<CartListUC products={[{...state[0],quantity:10}]} addQuantityProductInCartById={()=>{}} removeQuantityProductInCartById={()=>{}} />} */}
       </SafeAreaProvider>
+    </Provider>
   );
 }
 export default App;
