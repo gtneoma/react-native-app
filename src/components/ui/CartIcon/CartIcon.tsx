@@ -1,13 +1,15 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { style } from './CartIcon.style';
+import { useNavigation } from '@react-navigation/native';
 
 interface ICartIconProps {
   quantity: number;
 }
 const CartIcon = ({quantity}: ICartIconProps) => {
+  const nav=useNavigation();
   return (
-    <View>
+    <TouchableOpacity onPress={()=>{nav.navigate('Cart' as never);}}>
       <Image
         source={require('./trolley.png')}
         style={style.icon}
@@ -19,7 +21,7 @@ const CartIcon = ({quantity}: ICartIconProps) => {
           </Text>
         </View>
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 

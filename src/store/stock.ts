@@ -3,7 +3,7 @@ import { IProductItem } from '../interfaces/IProducts';
 import { RESSOURCES_NAMES, REST_ADR } from '../config/constantes';
 interface IStockState {
   products: Array<IProductItem>;
-  categories?: Array<{id:number}>;
+  categories?: Array<{ id: number }>;
   loaded: boolean;
 }
 const initialState: IStockState = {
@@ -16,10 +16,7 @@ const stock = createSlice({
   name: 'stock',
   initialState,
   reducers: {
-    addProductToStock(
-      state,
-      action: { type: string; payload: IProductItem },
-    ) {
+    addProductToStock(state, action: { type: string; payload: IProductItem }) {
       console.log(action);
       state.products.push(action.payload);
     },
@@ -29,9 +26,18 @@ const stock = createSlice({
     },
   },
   extraReducers: builder => {
+    builder.addCase(updateProduct.fulfilled, (s, a) => {
+      const position = s.products.findIndex(p => p.id === a.payload.id);
+      if (position >= 0) {
+        s.products[position] = a.payload;
+      } else {
+        s.products.push(a.payload);
+      }
+    });
+
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
-        console.log(action);
-        
+      console.log(action);
+
       state.products = action.payload.products;
       state.categories = action.payload.categories;
       state.loaded = true;
@@ -49,16 +55,39 @@ export const fetchProducts = createAsyncThunk(
   async () => {
     const promise = fetch(`${REST_ADR}${RESSOURCES_NAMES.PRODUCTS}`);
     const promise2 = fetch(`${REST_ADR}/categorys`);
-    console.log('fetching products and categories...'); 
-    
-    const prAll=await Promise.all([promise, promise2]);
+    console.log('fetching products and categories...');
+
+    const prAll = await Promise.all([promise, promise2]);
     console.log(prAll);
-    
-    const data = {products:await prAll[0].json(),categories:await prAll[1].json()};
+
+    const data = {
+      products: await prAll[0].json(),
+      categories: await prAll[1].json(),
+    };
     console.log(data);
     return data;
   },
 );
+
+export const updateProduct = createAsyncThunk(
+  'stock/updateProduct',
+  async (product: IProductItem) => {
+    const pr = await fetch(
+      `${REST_ADR}${RESSOURCES_NAMES.PRODUCTS}${
+        undefined === product.id ? '' : '/' + product.id
+      }`,
+      {
+        method: undefined === product.id ? 'POST' : 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      },
+    );
+    return await pr.json();
+  },
+);
+
 // export const validateCart = createAsyncThunk(
 //     'cart/fetchProducts',
 //     async (userId:number) => {
