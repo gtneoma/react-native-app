@@ -4,8 +4,14 @@ import { IProductItem } from '../../../../interfaces/IProducts';
 
 interface IProductListItemProps {
   produit: IProductItem;
+  onProductViewSelected: (product: IProductItem) => void;
+  onProductAddCartSelected: (product: IProductItem) => void;
 }
-const ProductListItem: React.FC<IProductListItemProps> = ({ produit }) => {
+const ProductListItem: React.FC<IProductListItemProps> = ({
+  produit,
+  onProductViewSelected,
+  onProductAddCartSelected,
+}) => {
   return (
     <View style={style.container}>
       <View style={style.imageContainer}>
@@ -30,7 +36,19 @@ const ProductListItem: React.FC<IProductListItemProps> = ({ produit }) => {
             {produit.stock}
           </Text>
         </Text>
-        {produit.stock > 0 && <Button title="Ajouter au panier" />}
+        {produit.stock > 0 && (
+          <Button
+            title="Ajouter au panier"
+            color={'#FF0BAE'}
+            onPress={() => onProductAddCartSelected(produit)}
+          />
+        )}
+        <Button
+          title="voir Produit"
+          onPress={() => {
+            onProductViewSelected(produit);
+          }}
+        />
       </View>
     </View>
   );

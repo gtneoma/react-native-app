@@ -2,10 +2,13 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import CartIcon from '../CartIcon/CartIcon.connected';
 import { style } from './Banner.style';
-
-const Banner = ({ text = 'Ma boutique' }) => {
+interface BannerProps {
+  text?: string;
+  styleProps?: object;
+}
+const Banner = ({ text = 'Ma boutique', styleProps={} }:BannerProps) => {
   return (
-    <View style={style.bannerContainer}>
+    <View style={[style.bannerContainer, styleProps]}>
       <View style={style.left}>
         <Text style={style.title}>{text}</Text>
       </View>
