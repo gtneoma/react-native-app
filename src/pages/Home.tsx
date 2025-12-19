@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet, Button } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { RootStackPramaList } from '../navigation/NavigationStack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const Home = () => {
-  const navigation=useNavigation();
+  const navigation=useNavigation<NativeStackNavigationProp<RootStackPramaList>>();
   return (
     <View>
       <Text style={{textAlign:'center', marginTop:100, marginBottom:50, fontSize:40, textDecorationLine:'underline'}}>Bienveue</Text>
@@ -22,7 +24,17 @@ const Home = () => {
           title="Voir panier"
           onPress={() => {
             /* Navigation logic to Products cart */
-            navigation.navigate('Cart' as never);
+            navigation.navigate('Cart');
+          }}
+        />
+        </View>
+        <View style={style.buttonView}>
+        <Button
+          title="Camera"
+           color={'aquamarine'}
+          onPress={() => {
+            /* Navigation logic to Products cart */
+            navigation.navigate('Camera');
           }}
         />
       </View>

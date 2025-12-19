@@ -6,10 +6,10 @@ import { IProductItem } from '../interfaces/IProducts';
 import { useDispatch } from 'react-redux';
 import { updateProduct } from '../store/stock';
 import { AppDispatch } from '../store/store';
-
+export type IProductEditorProps= { product: IProductItem }
 const ProductEditor = ({
   route,
-}: StaticScreenProps<{ product: IProductItem }>) => {
+}: StaticScreenProps<IProductEditorProps>) => {
   const d:AppDispatch = useDispatch();
   return (
     <ProductEdition
