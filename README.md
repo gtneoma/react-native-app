@@ -1,5 +1,7 @@
 # Documentation Projet React Native
 
+PDF disponible dans le dossier "Docs" du projet.
+
 ## Dossier des sdk :
 ```
 /Users/gaetan.tremois/Library/Android/sdk
