@@ -1,6 +1,6 @@
 # Documentation Projet React Native
 
-PDF disponible dans le dossier "Docs" du projet.
+PDF disponible dans le dossier "/docs" du projet.
 
 ## Dossier des sdk :
 ```
